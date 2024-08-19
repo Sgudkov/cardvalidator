@@ -1,4 +1,4 @@
-# Main Package
+# Card validator
 
 The [main](https://github.com/Sgudkov/cardvalidator/blob/main/main.go#L40:L46) package is the entry point of the `cardvalidator` application. It is defined in the `main.go` file.
 
