@@ -1,5 +1,3 @@
-## Code
-
 **Card Validator API**
 ======================
 
