@@ -1,11 +1,12 @@
 package main
 
 import (
-	"cardvalidator/cardvalidator"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+
+	"github.com/ShiraazMoollatjie/goluhn"
 )
 
 type CardInfo struct {
@@ -32,7 +33,7 @@ func validateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = cardvalidator.ValidateCardNumber(cardInfo.Number)
+	err = ValidateCardNumber(cardInfo.Number)
 	if err != nil {
 		http.Error(w, err.Error(), 400)
 		return
@@ -40,6 +41,15 @@ func validateHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(200)
 	fmt.Fprintf(w, "ok")
+}
+
+// ValidateCardNumber validates a card number using the Luhn algorithm.
+//
+// It takes a card number as a string parameter.
+// Returns an error if the card number is invalid, nil otherwise.
+func ValidateCardNumber(cardNumber string) error {
+	error := goluhn.Validate(cardNumber)
+	return error
 }
 
 // main is the entry point of the program.
